@@ -1,0 +1,14 @@
+"use strict";
+exports.__esModule = true;
+//import express from 'express';
+//import bodyParser from 'body-parser';
+var routes_1 = require("./routes");
+var express = require('express');
+var app = express();
+app.use('/', express.static(__dirname + '/public'));
+//app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({ extended: false}));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(routes_1["default"]);
+app.listen(3000);
