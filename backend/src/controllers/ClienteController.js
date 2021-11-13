@@ -36,16 +36,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-var knex = require('knex')({
-    client: 'mysql',
+var knex = require('../database/conector');
+/*const knex = require('knex')({
+    client: 'mysql2',
     connection: {
-        host: '127.0.0.1',
-        port: 3306,
-        user: 'root',
-        password: '12345678',
-        database: 'banco'
+      host : '127.0.0.1',
+      port : 3306,
+      user : 'root',
+      password : '12345678',
+      database : 'banco'
     }
-});
+  });*/
 module.exports = {
     index: function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
@@ -95,21 +96,53 @@ module.exports = {
                     case 0:
                         nome = req.body.nome;
                         email = req.body.email;
-                        id = req.params;
+                        id = req.params.id;
+                        console.log(nome);
+                        console.log(email);
                         console.log(id);
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, knex('cliente').update({ nome: nome, email: email })
-                                .where({ 'idcliente': id })];
+                        return [4 /*yield*/, knex.raw("update cliente set nome ='" + nome +
+                                "', email = '" + email + "' where id = " + id).toSQL()];
                     case 2:
                         _a.sent();
-                        return [2 /*return*/, res.status(201).send()];
+                        //knex('cliente')
+                        //.where(knex.raw('id = ?', [id]))
+                        //.where({id})
+                        //.update({'nome' : nome, 'email' : email})
+                        //.where({ id });
+                        return [2 /*return*/, res.send()];
                     case 3:
                         error_2 = _a.sent();
                         next(error_2);
                         return [3 /*break*/, 4];
                     case 4: return [2 /*return*/];
+                }
+            });
+        });
+    },
+    "delete": function (req, res, next) {
+        return __awaiter(this, void 0, void 0, function () {
+            var id, error_3;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 2, , 3]);
+                        id = req.params;
+                        console.log(id);
+                        return [4 /*yield*/, knex.raw("delete form cliente where id = :id", { 'id': id })];
+                    case 1:
+                        _a.sent();
+                        //knex('cliente')
+                        //.where({ id })
+                        //.del()            
+                        return [2 /*return*/, res.send()];
+                    case 2:
+                        error_3 = _a.sent();
+                        next(error_3);
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
                 }
             });
         });

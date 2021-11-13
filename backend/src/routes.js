@@ -1,8 +1,8 @@
 "use strict";
 exports.__esModule = true;
-var express_1 = require("express");
-var routes = (0, express_1.Router)();
-var UserController = require('./controllers/ClienteController');
+var express = require('express');
+var routes = express.Router();
+var ClienteController = require('./controllers/ClienteController');
 //var mysql = require('mysql');
 /*var connection = mysql.createConnection({
     host: 'localhost',
@@ -15,7 +15,7 @@ connection.connect(function (err: any) {
     if (err)
         throw err;
 });*/
-routes.get('/clientes', UserController.index);
+routes.get('/clientes', ClienteController.index);
 /*connection.query('select * from cliente', function (err: any, rows: any, field: any) {
     if (err)
         throw err;
@@ -23,7 +23,7 @@ routes.get('/clientes', UserController.index);
     res.json(rows);
 });*/
 //});
-routes.post('/cliente', UserController.create); //(req,res)=>{
+routes.post('/clientes', ClienteController.create); //(req,res)=>{
 /*let nome = req.body.nome;
 let email = req.body.email;
 let cliente = new Cliente(0, nome, email);
@@ -34,7 +34,7 @@ connection.query('insert into cliente (nome, email) values (?, ? );', [cliente.g
 });
 res.send("/index.html");*/
 //});
-routes.put('/cliente/:id', UserController.update); //(req, res)=>{
+routes.put('/clientes/:id', ClienteController.update); //(req, res)=>{
 /*let id = req.body.id;
 let nome = req.body.nome;
 let email = req.body.email;
@@ -45,12 +45,12 @@ connection.query('update cliente set nome = ?, email = ? where clienteId = ?', [
     console.log("atualizou o cadastro de cliente");
 });*/
 //});
-routes["delete"]('delete/id', function (req, res) {
-    /*let id = req.body.id;
-    connection.query('delete from cliente where clienteId = ?', [id], function (err: any, rows: any, field: any) {
-        if (err)
-            throw err;
-        console.log("atualizou o cadastro de cliente");
-    });*/
-});
+routes["delete"]('/clientes/:id', ClienteController["delete"]); //(req, res)=>{
+/*let id = req.body.id;
+connection.query('delete from cliente where clienteId = ?', [id], function (err: any, rows: any, field: any) {
+    if (err)
+        throw err;
+    console.log("atualizou o cadastro de cliente");
+});*/
+//});
 exports["default"] = routes;

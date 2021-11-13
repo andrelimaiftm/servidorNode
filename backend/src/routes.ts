@@ -1,9 +1,11 @@
-import { Router } from 'express';
+//import { Router } from 'express';
 import {Cliente} from './Cliente';
 
-const routes = Router();
+const express = require('express');
+const routes = express.Router();
 
-const UserController = require('./controllers/ClienteController');
+
+const ClienteController = require('./controllers/ClienteController');
 
 
 
@@ -21,7 +23,7 @@ connection.connect(function (err: any) {
         throw err;
 });*/
 
-routes.get('/clientes', UserController.index);
+routes.get('/clientes', ClienteController.index);
     /*connection.query('select * from cliente', function (err: any, rows: any, field: any) {
         if (err)
             throw err;
@@ -30,7 +32,7 @@ routes.get('/clientes', UserController.index);
     });*/
 //});
 
-routes.post('/cliente', UserController.create); //(req,res)=>{
+routes.post('/clientes', ClienteController.create); //(req,res)=>{
     /*let nome = req.body.nome;
     let email = req.body.email;        
     let cliente = new Cliente(0, nome, email);
@@ -42,7 +44,7 @@ routes.post('/cliente', UserController.create); //(req,res)=>{
     res.send("/index.html");*/
 //});
 
-routes.put('/cliente/:id', UserController.update);//(req, res)=>{
+routes.put('/clientes/:id', ClienteController.update);//(req, res)=>{
     /*let id = req.body.id;
     let nome = req.body.nome;
     let email = req.body.email;
@@ -54,14 +56,14 @@ routes.put('/cliente/:id', UserController.update);//(req, res)=>{
     });*/
 //});
 
-routes.delete('delete/id',(req, res)=>{
+routes.delete('/clientes/:id', ClienteController.delete);//(req, res)=>{
     /*let id = req.body.id;    
     connection.query('delete from cliente where clienteId = ?', [id], function (err: any, rows: any, field: any) {
         if (err)
             throw err;
         console.log("atualizou o cadastro de cliente");
     });*/
-});
+//});
 
 
 
