@@ -10,5 +10,6 @@ routes.get('/clientes', ClienteController.index);
 routes.post('/clientes', ClienteController.create);
 routes.put('/clientes/:id', ClienteController.update);
 routes.delete('/clientes/:id', ClienteController.delete);
+routes.get('/clientes/:id', ClienteController.buscaId);
 
 export default routes;

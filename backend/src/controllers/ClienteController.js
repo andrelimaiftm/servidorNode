@@ -121,7 +121,7 @@ module.exports = {
                         _a.trys.push([0, 2, , 3]);
                         id = req.params;
                         console.log(id);
-                        return [4 /*yield*/, knex.raw("delete form cliente where id = :id", { 'id': id })];
+                        return [4 /*yield*/, knex.raw("delete form cliente where id = :id", { id: id }).toSQL()];
                     case 1:
                         _a.sent();
                         //knex('cliente')
@@ -133,6 +133,30 @@ module.exports = {
                         next(error_3);
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];
+                }
+            });
+        });
+    },
+    buscaId: function (req, res, next) {
+        return __awaiter(this, void 0, void 0, function () {
+            var id, results, error_4;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        id = req.params;
+                        console.log(id);
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, knex('cliente').where({ id: id })];
+                    case 2:
+                        results = _a.sent();
+                        return [2 /*return*/, res.json(results)];
+                    case 3:
+                        error_4 = _a.sent();
+                        next(error_4);
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
                 }
             });
         });

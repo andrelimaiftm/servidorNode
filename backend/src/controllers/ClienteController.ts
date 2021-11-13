@@ -54,12 +54,27 @@ module.exports = {
             let id = req.params;
             console.log(id);
 
-            await knex.raw("delete form cliente where id = :id",{'id':id});
+            await knex.raw("delete form cliente where id = :id",{id}).toSQL();
             //knex('cliente')
             //.where({ id })
             //.del()            
 
             return res.send();
+        } catch (error) {
+            next(error);
+        }
+    },
+
+    async buscaId (req, res, next){
+
+        let id = req.params;
+        console.log(id);
+
+        try {
+
+            const results = await knex('cliente').where({id});
+            return res.json(results);
+            
         } catch (error) {
             next(error);
         }
