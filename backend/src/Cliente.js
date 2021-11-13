@@ -25,10 +25,6 @@ var Cliente = /** @class */ (function () {
     Cliente.prototype.setEmail = function (valor) {
         this.email = valor;
     };
-    Cliente.prototype.montaCliente = function (_a) {
-        var id = _a.id, nome = _a.nome, email = _a.email;
-        console.log("Montano cliente com id: " + id + ", nome: " + nome + ", email: " + email + " ");
-    };
     return Cliente;
 }());
 exports.Cliente = Cliente;

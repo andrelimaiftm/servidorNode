@@ -37,16 +37,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 var knex = require('../database/conector');
-/*const knex = require('knex')({
-    client: 'mysql2',
-    connection: {
-      host : '127.0.0.1',
-      port : 3306,
-      user : 'root',
-      password : '12345678',
-      database : 'banco'
-    }
-  });*/
 module.exports = {
     index: function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
